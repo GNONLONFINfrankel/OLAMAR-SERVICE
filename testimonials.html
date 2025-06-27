@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olamar Service - Témoignages & Avis</title>
+    <!-- Favicon - Placeholder, replace with actual Olamar Service logo -->
+    <link rel="icon" href="ressources/WhatsApp Image 2025-06-26 à 23.35.49_bdc234a0.jpg" type="image/x-icon">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- RateYo for star ratings -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
+
+    <style>
+        /* Configuration de Tailwind CSS pour les couleurs personnalisées et les polices */
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        :root {
+            --color-vert-foret: #104E2B;
+            --color-orange-agricole: #D97904;
+            --color-vert-clair: #8BC34A;
+            --color-beige-creme: #F5F3ED;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Défilement fluide pour les ancres */
+        }
+
+        body {
+            font-family: 'Poppins', 'Lato', 'Montserrat', sans-serif;
+            background-color: var(--color-beige-creme);
+            color: var(--color-vert-foret);
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+        }
+
+        /* Styles personnalisés pour les sections et éléments */
+        .btn-primary {
+            @apply bg-orange-agricole text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-orange-600 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-vert-foret text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-800 transition duration-300 ease-in-out;
+        }
+        .section-title {
+            @apply text-4xl font-bold text-vert-foret mb-8 text-center relative;
+        }
+        .section-title::after {
+            content: '';
+            @apply absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-orange-agricole rounded-full;
+        }
+
+        /* Animations douces au scroll (exemple) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles pour le bouton WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Couleur WhatsApp */
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Classes pour les couleurs Tailwind personnalisées */
+        .bg-vert-foret { background-color: var(--color-vert-foret); }
+        .text-vert-foret { color: var(--color-vert-foret); }
+        .bg-orange-agricole { background-color: var(--color-orange-agricole); }
+        .text-orange-agricole { color: var(--color-orange-agricole); }
+        .bg-vert-clair { background-color: var(--color-vert-clair); }
+        .text-vert-clair { color: var(--color-vert-clair); }
+        .bg-beige-creme { background-color: var(--color-beige-creme); }
+        .text-beige-creme { color: var(--color-beige-creme); }
+
+        /* Styles spécifiques pour le RateYo */
+        .jq-ry-container .jq-ry-group svg {
+            color: var(--color-orange-agricole) !important; /* Couleur des étoiles remplies */
+        }
+        .jq-ry-container .jq-ry-group.jq-ry-half-star svg {
+            color: var(--color-orange-agricole) !important;
+        }
+        .jq-ry-container .jq-ry-group.jq-ry-empty-star svg {
+            color: #ddd !important; /* Couleur des étoiles vides */
+        }
+
+        /* Styles pour les sections (assurent un padding cohérent) */
+        section {
+            padding: 6rem 1rem; /* Padding par défaut pour toutes les sections */
+        }
+        @media (min-width: 768px) {
+            section {
+                padding: 8rem 2rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            section {
+                padding: 10rem 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 w-full z-50 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo Olamar Service - Placeholder, replace with actual Olamar Service logo -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="ressources/WhatsApp Image 2025-06-26 à 23.35.49_bdc234a0.jpg" alt="Logo Olamar Service" class="h-12 rounded-full">
+                <span class="text-vert-foret text-2xl font-bold">Olamar Service</span>
+            </a>
+
+            <!-- Menu de navigation pour grand écran -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Accueil</a>
+                <a href="about.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Services</a>
+                <a href="testimonials.html" class="text-orange-agricole transition duration-300 font-semibold">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Contact</a>
+                <a href="quote.html" class="btn-primary">Demander un devis</a>
+            </nav>
+
+            <!-- Bouton Hamburger pour mobile -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-vert-foret focus:outline-none">
+                    <i class="fas fa-bars text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu de navigation mobile (caché par défaut) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-lg shadow-lg">
+            <nav class="flex flex-col space-y-4 py-4 px-6">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Accueil</a>
+                <a href="about.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+                <a href="testimonials.html" class="text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+                <a href="quote.html" class="btn-primary text-center mt-4" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Demander un devis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mt-20"> <!-- Ajoute une marge supérieure pour éviter que le contenu ne soit sous le header fixe -->
+
+        <!-- Section Témoignages & avis -->
+        <section id="testimonials-section" class="bg-beige-creme py-16 md:py-24 text-vert-foret">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="section-title">Ce que nos clients disent</h2>
+
+                <!-- Affichage des témoignages -->
+                <div id="testimonialsDisplay" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Les témoignages seront insérés ici par JavaScript -->
+                </div>
+
+                <h3 class="text-3xl font-semibold text-vert-foret mb-6 text-center">Laissez votre avis</h3>
+                <form id="testimonialForm" class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                    <div class="mb-6">
+                        <label for="testimonialPseudo" class="block text-sm font-medium text-gray-700 mb-2">Votre prénom ou pseudo</label>
+                        <input type="text" id="testimonialPseudo" name="pseudo" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="testimonialEmail" class="block text-sm font-medium text-gray-700 mb-2">Email (facultatif)</label>
+                        <input type="email" id="testimonialEmail" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Votre note</label>
+                        <div id="rateYo" class="flex items-center"></div>
+                        <input type="hidden" id="testimonialRating" name="rating" value="0">
+                    </div>
+                    <div class="mb-6">
+                        <label for="testimonialComment" class="block text-sm font-medium text-gray-700 mb-2">Votre commentaire</label>
+                        <textarea id="testimonialComment" name="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-3 text-lg">Envoyer un avis</button>
+                    <p class="text-sm text-gray-500 mt-4 text-center">Votre avis sera publié après modération.</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-vert-foret text-beige-creme py-12 px-6 md:px-12 rounded-t-lg">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start">
+                <!-- Logo Olamar Service - Placeholder -->
+                <img src="https://placehold.co/60x60/104E2B/FFFFFF?text=LOGO" alt="Logo Olamar Service" class="h-12 mb-4 rounded-full">
+                <p class="text-lg font-bold">Olamar Service</p>
+                <p class="text-sm mt-2">Votre partenaire pour un avenir agricole prospère.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Contact Rapide</h3>
+                <p>📍 Pobè – Cotonou</p>
+                <p>📞 +229 01 62 22 27 52</p>
+                <p>📞 +229 01 68 95 59 99</p>
+                <p>📧 gnahorubencandide@gmail.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Suivez-nous</h3>
+                <a href="https://www.facebook.com/OlamarService" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-white transition duration-300">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <p class="text-sm mt-4">Pour les dernières actualités et conseils.</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+            &copy; <span id="currentYear"></span> Olamar Service. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/2290162222752" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- jQuery (nécessaire pour RateYo) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- RateYo JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+    <script>
+        // JavaScript pour la navigation, les formulaires et les animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const testimonialForm = document.getElementById('testimonialForm');
+            const testimonialRatingInput = document.getElementById('testimonialRating');
+            const testimonialsDisplay = document.getElementById('testimonialsDisplay');
+
+            // Toggle du menu mobile
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling pour la navigation (pour les ancres sur la même page)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animations au scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('appear');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Initialisation de RateYo pour le formulaire de témoignages
+            if ($.fn.rateYo) { // Vérifie si RateYo est chargé
+                $("#rateYo").rateYo({
+                    rating: 0,
+                    starWidth: "30px",
+                    fullStar: true,
+                    readOnly: false,
+                    ratedFill: "var(--color-orange-agricole)",
+                    normalFill: "#ddd"
+                }).on("rateyo.change", function (e, data) {
+                    // Met à jour la valeur du champ caché avec la note sélectionnée
+                    testimonialRatingInput.value = data.rating;
+                });
+            } else {
+                console.error("RateYo est introuvable. Assurez-vous que jQuery et RateYo JS sont correctement chargés.");
+            }
+
+            // Données de témoignages statiques (pour la démo frontend)
+            const testimonialsData = [
+                {
+                    pseudo: "Jean Dupont",
+                    comment: "Olamar Service a transformé mon exploitation ! Le suivi agronomique a vraiment amélioré mes rendements. Très professionnel.",
+                    rating: 5
+                },
+                {
+                    pseudo: "Marie Traoré",
+                    comment: "Accompagnement exceptionnel pour mon projet agrobusiness. De l'étude à la mise en œuvre, tout a été fluide et bien géré.",
+                    rating: 4.5
+                },
+                {
+                    pseudo: "Ahmed Koné",
+                    comment: "J'ai suivi la formation en gestion de coopératives. Clair, pratique et très instructif. Je recommande vivement !",
+                    rating: 5
+                },
+                {
+                    pseudo: "Sophie Dubois",
+                    comment: "Leur expertise en gestion foncière est impressionnante. J'ai pu sécuriser mes terres rapidement et sans tracas.",
+                    rating: 4
+                }
+            ];
+
+            // Fonction pour afficher les témoignages
+            function displayTestimonials() {
+                if (testimonialsDisplay) {
+                    testimonialsDisplay.innerHTML = ''; // Vide l'affichage actuel
+                    testimonialsData.forEach(testimonial => {
+                        const starsHtml = '<div class="flex justify-center md:justify-start">' +
+                            Array(Math.floor(testimonial.rating)).fill('<i class="fas fa-star text-orange-agricole"></i>').join('') +
+                            (testimonial.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt text-orange-agricole"></i>' : '') +
+                            Array(5 - Math.ceil(testimonial.rating)).fill('<i class="far fa-star text-orange-agricole"></i>').join('') +
+                            '</div>';
+
+                        const testimonialCard = `
+                            <div class="bg-white p-6 rounded-xl shadow-md text-center md:text-left fade-in">
+                                <p class="text-gray-700 italic mb-4">"${testimonial.comment}"</p>
+                                <p class="font-semibold text-vert-foret mb-2">${testimonial.pseudo}</p>
+                                ${starsHtml}
+                            </div>
+                        `;
+                        testimonialsDisplay.innerHTML += testimonialCard;
+                    });
+                     // Appliquer l'animation 'appear' aux nouveaux témoignages
+                    testimonialsDisplay.querySelectorAll('.fade-in').forEach(fader => {
+                        fader.classList.add('appear');
+                    });
+                }
+            }
+            displayTestimonials(); // Affiche les témoignages au chargement
+
+            // Gestion de la soumission du formulaire d'avis
+            if (testimonialForm) {
+                testimonialForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const newTestimonial = {
+                        pseudo: this.elements['pseudo'].value,
+                        email: this.elements['email'].value, // L'email sera masqué et non affiché publiquement
+                        rating: parseFloat(this.elements['rating'].value),
+                        comment: this.elements['comment'].value
+                    };
+
+                    if (newTestimonial.rating === 0) {
+                        alert("Veuillez donner une note en étoiles.");
+                        return;
+                    }
+
+                    console.log('Nouvel avis soumis:', newTestimonial);
+                    // Dans un système réel, cet avis serait envoyé à un backend pour modération et stockage.
+                    alert('Votre avis a été soumis et sera visible après modération !');
+                    this.reset();
+                    // Réinitialise RateYo
+                    if ($.fn.rateYo) {
+                        $("#rateYo").rateYo("rating", 0);
+                    }
+                    testimonialRatingInput.value = 0; // Réinitialise le champ caché
+                    
+                    // Pour la démo, on peut l'ajouter directement (simule la publication après modération)
+                    // testimonialsData.push({ pseudo: newTestimonial.pseudo, comment: newTestimonial.comment, rating: newTestimonial.rating });
+                    // displayTestimonials();
+                });
+            }
+
+            // Mettre à jour l'année dans le footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olamar Service - Témoignages & Avis</title>
+    <!-- Favicon - Placeholder, replace with actual Olamar Service logo -->
+    <link rel="icon" href="https://placehold.co/32x32/104E2B/FFFFFF?text=OS" type="image/x-icon">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- RateYo for star ratings -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css"/>
+
+    <style>
+        /* Configuration de Tailwind CSS pour les couleurs personnalisées et les polices */
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        :root {
+            --color-vert-foret: #104E2B;
+            --color-orange-agricole: #D97904;
+            --color-vert-clair: #8BC34A;
+            --color-beige-creme: #F5F3ED;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Défilement fluide pour les ancres */
+        }
+
+        body {
+            font-family: 'Poppins', 'Lato', 'Montserrat', sans-serif;
+            background-color: var(--color-beige-creme);
+            color: var(--color-vert-foret);
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+        }
+
+        /* Styles personnalisés pour les sections et éléments */
+        .btn-primary {
+            @apply bg-orange-agricole text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-orange-600 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-vert-foret text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-800 transition duration-300 ease-in-out;
+        }
+        .section-title {
+            @apply text-4xl font-bold text-vert-foret mb-8 text-center relative;
+        }
+        .section-title::after {
+            content: '';
+            @apply absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-orange-agricole rounded-full;
+        }
+
+        /* Animations douces au scroll (exemple) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles pour le bouton WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Couleur WhatsApp */
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Classes pour les couleurs Tailwind personnalisées */
+        .bg-vert-foret { background-color: var(--color-vert-foret); }
+        .text-vert-foret { color: var(--color-vert-foret); }
+        .bg-orange-agricole { background-color: var(--color-orange-agricole); }
+        .text-orange-agricole { color: var(--color-orange-agricole); }
+        .bg-vert-clair { background-color: var(--color-vert-clair); }
+        .text-vert-clair { color: var(--color-vert-clair); }
+        .bg-beige-creme { background-color: var(--color-beige-creme); }
+        .text-beige-creme { color: var(--color-beige-creme); }
+
+        /* Styles spécifiques pour le RateYo */
+        .jq-ry-container .jq-ry-group svg {
+            color: var(--color-orange-agricole) !important; /* Couleur des étoiles remplies */
+        }
+        .jq-ry-container .jq-ry-group.jq-ry-half-star svg {
+            color: var(--color-orange-agricole) !important;
+        }
+        .jq-ry-container .jq-ry-group.jq-ry-empty-star svg {
+            color: #ddd !important; /* Couleur des étoiles vides */
+        }
+
+        /* Styles pour les sections (assurent un padding cohérent) */
+        section {
+            padding: 6rem 1rem; /* Padding par défaut pour toutes les sections */
+        }
+        @media (min-width: 768px) {
+            section {
+                padding: 8rem 2rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            section {
+                padding: 10rem 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 w-full z-50 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo Olamar Service - Placeholder, replace with actual Olamar Service logo -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="https://placehold.co/60x60/104E2B/FFFFFF?text=LOGO" alt="Logo Olamar Service" class="h-12 rounded-full">
+                <span class="text-vert-foret text-2xl font-bold">Olamar Service</span>
+            </a>
+
+            <!-- Menu de navigation pour grand écran -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Accueil</a>
+                <a href="about.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Services</a>
+                <a href="testimonials.html" class="text-orange-agricole transition duration-300 font-semibold">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Contact</a>
+                <a href="quote.html" class="btn-primary">Demander un devis</a>
+            </nav>
+
+            <!-- Bouton Hamburger pour mobile -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-vert-foret focus:outline-none">
+                    <i class="fas fa-bars text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu de navigation mobile (caché par défaut) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-lg shadow-lg">
+            <nav class="flex flex-col space-y-4 py-4 px-6">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Accueil</a>
+                <a href="about.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+                <a href="testimonials.html" class="text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+                <a href="quote.html" class="btn-primary text-center mt-4" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Demander un devis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mt-20"> <!-- Ajoute une marge supérieure pour éviter que le contenu ne soit sous le header fixe -->
+
+        <!-- Section Témoignages & avis -->
+        <section id="testimonials-section" class="bg-beige-creme py-16 md:py-24 text-vert-foret">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="section-title">Ce que nos clients disent</h2>
+
+                <!-- Affichage des témoignages -->
+                <div id="testimonialsDisplay" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Les témoignages seront insérés ici par JavaScript -->
+                </div>
+
+                <h3 class="text-3xl font-semibold text-vert-foret mb-6 text-center">Laissez votre avis</h3>
+                <form id="testimonialForm" class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                    <div class="mb-6">
+                        <label for="testimonialPseudo" class="block text-sm font-medium text-gray-700 mb-2">Votre prénom ou pseudo</label>
+                        <input type="text" id="testimonialPseudo" name="pseudo" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="testimonialEmail" class="block text-sm font-medium text-gray-700 mb-2">Email (facultatif)</label>
+                        <input type="email" id="testimonialEmail" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Votre note</label>
+                        <div id="rateYo" class="flex items-center"></div>
+                        <input type="hidden" id="testimonialRating" name="rating" value="0">
+                    </div>
+                    <div class="mb-6">
+                        <label for="testimonialComment" class="block text-sm font-medium text-gray-700 mb-2">Votre commentaire</label>
+                        <textarea id="testimonialComment" name="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-agricole focus:border-orange-agricole" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-3 text-lg">Envoyer un avis</button>
+                    <p class="text-sm text-gray-500 mt-4 text-center">Votre avis sera publié après modération.</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-vert-foret text-beige-creme py-12 px-6 md:px-12 rounded-t-lg">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start">
+                <!-- Logo Olamar Service - Placeholder -->
+                <img src="https://placehold.co/60x60/104E2B/FFFFFF?text=LOGO" alt="Logo Olamar Service" class="h-12 mb-4 rounded-full">
+                <p class="text-lg font-bold">Olamar Service</p>
+                <p class="text-sm mt-2">Votre partenaire pour un avenir agricole prospère.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Contact Rapide</h3>
+                <p>📍 Pobè – Cotonou</p>
+                <p>📞 +229 01 62 22 27 52</p>
+                <p>📞 +229 01 68 95 59 99</p>
+                <p>📧 gnahorubencandide@gmail.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Suivez-nous</h3>
+                <a href="https://www.facebook.com/OlamarService" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-white transition duration-300">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <p class="text-sm mt-4">Pour les dernières actualités et conseils.</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+            &copy; <span id="currentYear"></span> Olamar Service. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/2290162222752" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- jQuery (nécessaire pour RateYo) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- RateYo JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+    <script>
+        // JavaScript pour la navigation, les formulaires et les animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const testimonialForm = document.getElementById('testimonialForm');
+            const testimonialRatingInput = document.getElementById('testimonialRating');
+            const testimonialsDisplay = document.getElementById('testimonialsDisplay');
+
+            // Toggle du menu mobile
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling pour la navigation (pour les ancres sur la même page)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animations au scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('appear');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Initialisation de RateYo pour le formulaire de témoignages
+            if ($.fn.rateYo) { // Vérifie si RateYo est chargé
+                $("#rateYo").rateYo({
+                    rating: 0,
+                    starWidth: "30px",
+                    fullStar: true,
+                    readOnly: false,
+                    ratedFill: "var(--color-orange-agricole)",
+                    normalFill: "#ddd"
+                }).on("rateyo.change", function (e, data) {
+                    // Met à jour la valeur du champ caché avec la note sélectionnée
+                    testimonialRatingInput.value = data.rating;
+                });
+            } else {
+                console.error("RateYo est introuvable. Assurez-vous que jQuery et RateYo JS sont correctement chargés.");
+            }
+
+            // Données de témoignages statiques (pour la démo frontend)
+            const testimonialsData = [
+                {
+                    pseudo: "Jean Dupont",
+                    comment: "Olamar Service a transformé mon exploitation ! Le suivi agronomique a vraiment amélioré mes rendements. Très professionnel.",
+                    rating: 5
+                },
+                {
+                    pseudo: "Marie Traoré",
+                    comment: "Accompagnement exceptionnel pour mon projet agrobusiness. De l'étude à la mise en œuvre, tout a été fluide et bien géré.",
+                    rating: 4.5
+                },
+                {
+                    pseudo: "Ahmed Koné",
+                    comment: "J'ai suivi la formation en gestion de coopératives. Clair, pratique et très instructif. Je recommande vivement !",
+                    rating: 5
+                },
+                {
+                    pseudo: "Sophie Dubois",
+                    comment: "Leur expertise en gestion foncière est impressionnante. J'ai pu sécuriser mes terres rapidement et sans tracas.",
+                    rating: 4
+                }
+            ];
+
+            // Fonction pour afficher les témoignages
+            function displayTestimonials() {
+                if (testimonialsDisplay) {
+                    testimonialsDisplay.innerHTML = ''; // Vide l'affichage actuel
+                    testimonialsData.forEach(testimonial => {
+                        const starsHtml = '<div class="flex justify-center md:justify-start">' +
+                            Array(Math.floor(testimonial.rating)).fill('<i class="fas fa-star text-orange-agricole"></i>').join('') +
+                            (testimonial.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt text-orange-agricole"></i>' : '') +
+                            Array(5 - Math.ceil(testimonial.rating)).fill('<i class="far fa-star text-orange-agricole"></i>').join('') +
+                            '</div>';
+
+                        const testimonialCard = `
+                            <div class="bg-white p-6 rounded-xl shadow-md text-center md:text-left fade-in">
+                                <p class="text-gray-700 italic mb-4">"${testimonial.comment}"</p>
+                                <p class="font-semibold text-vert-foret mb-2">${testimonial.pseudo}</p>
+                                ${starsHtml}
+                            </div>
+                        `;
+                        testimonialsDisplay.innerHTML += testimonialCard;
+                    });
+                     // Appliquer l'animation 'appear' aux nouveaux témoignages
+                    testimonialsDisplay.querySelectorAll('.fade-in').forEach(fader => {
+                        fader.classList.add('appear');
+                    });
+                }
+            }
+            displayTestimonials(); // Affiche les témoignages au chargement
+
+            // Gestion de la soumission du formulaire d'avis
+            if (testimonialForm) {
+                testimonialForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const newTestimonial = {
+                        pseudo: this.elements['pseudo'].value,
+                        email: this.elements['email'].value, // L'email sera masqué et non affiché publiquement
+                        rating: parseFloat(this.elements['rating'].value),
+                        comment: this.elements['comment'].value
+                    };
+
+                    if (newTestimonial.rating === 0) {
+                        alert("Veuillez donner une note en étoiles.");
+                        return;
+                    }
+
+                    console.log('Nouvel avis soumis:', newTestimonial);
+                    // Dans un système réel, cet avis serait envoyé à un backend pour modération et stockage.
+                    alert('Votre avis a été soumis et sera visible après modération !');
+                    this.reset();
+                    // Réinitialise RateYo
+                    if ($.fn.rateYo) {
+                        $("#rateYo").rateYo("rating", 0);
+                    }
+                    testimonialRatingInput.value = 0; // Réinitialise le champ caché
+                    
+                    // Pour la démo, on peut l'ajouter directement (simule la publication après modération)
+                    // testimonialsData.push({ pseudo: newTestimonial.pseudo, comment: newTestimonial.comment, rating: newTestimonial.rating });
+                    // displayTestimonials();
+                });
+            }
+
+            // Mettre à jour l'année dans le footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

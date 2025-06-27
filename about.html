@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olamar Service - À propos</title>
+    <!-- Favicon - Placeholder, replace with actual Olamar Service logo -->
+    <link rel="icon" href="ressources/WhatsApp Image 2025-06-26 à 23.35.49_bdc234a0.jpg" type="image/x-icon">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Configuration de Tailwind CSS pour les couleurs personnalisées et les polices */
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        :root {
+            --color-vert-foret: #104E2B;
+            --color-orange-agricole: #D97904;
+            --color-vert-clair: #8BC34A;
+            --color-beige-creme: #F5F3ED;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Défilement fluide pour les ancres */
+        }
+
+        body {
+            font-family: 'Poppins', 'Lato', 'Montserrat', sans-serif;
+            background-color: var(--color-beige-creme);
+            color: var(--color-vert-foret);
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+        }
+
+        /* Styles personnalisés pour les sections et éléments */
+        .btn-primary {
+            @apply bg-orange-agricole text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-orange-600 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-vert-foret text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-800 transition duration-300 ease-in-out;
+        }
+        .section-title {
+            @apply text-4xl font-bold text-vert-foret mb-8 text-center relative;
+        }
+        .section-title::after {
+            content: '';
+            @apply absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-orange-agricole rounded-full;
+        }
+
+        /* Animations douces au scroll (exemple) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles pour le bouton WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Couleur WhatsApp */
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Classes pour les couleurs Tailwind personnalisées */
+        .bg-vert-foret { background-color: var(--color-vert-foret); }
+        .text-vert-foret { color: var(--color-vert-foret); }
+        .bg-orange-agricole { background-color: var(--color-orange-agricole); }
+        .text-orange-agricole { color: var(--color-orange-agricole); }
+        .bg-vert-clair { background-color: var(--color-vert-clair); }
+        .text-vert-clair { color: var(--color-vert-clair); }
+        .bg-beige-creme { background-color: var(--color-beige-creme); }
+        .text-beige-creme { color: var(--color-beige-creme); }
+
+        /* Styles pour les sections (assurent un padding cohérent) */
+        section {
+            padding: 6rem 1rem; /* Padding par défaut pour toutes les sections */
+        }
+        @media (min-width: 768px) {
+            section {
+                padding: 8rem 2rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            section {
+                padding: 10rem 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 fixed top-0 left-0 w-full z-50 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo Olamar Service - Placeholder, replace with actual Olamar Service logo -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="ressources/WhatsApp Image 2025-06-26 à 23.35.49_bdc234a0.jpg" alt="Logo Olamar Service" class="h-12 rounded-full">
+                <span class="text-vert-foret text-2xl font-bold">Olamar Service</span>
+            </a>
+
+            <!-- Menu de navigation pour grand écran -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Accueil</a>
+                <a href="about.html" class="text-orange-agricole transition duration-300 font-semibold">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Services</a>
+                <a href="testimonials.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold">Contact</a>
+                <a href="quote.html" class="btn-primary">Demander un devis</a>
+            </nav>
+
+            <!-- Bouton Hamburger pour mobile -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-vert-foret focus:outline-none">
+                    <i class="fas fa-bars text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu de navigation mobile (caché par défaut) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-lg shadow-lg">
+            <nav class="flex flex-col space-y-4 py-4 px-6">
+                <a href="index.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Accueil</a>
+                <a href="about.html" class="text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">À propos</a>
+                <a href="services.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+                <a href="testimonials.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Témoignages</a>
+                <a href="contact.html" class="text-vert-foret hover:text-orange-agricole transition duration-300 font-semibold block" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+                <a href="quote.html" class="btn-primary text-center mt-4" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Demander un devis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mt-20"> <!-- Ajoute une marge supérieure pour éviter que le contenu ne soit sous le header fixe -->
+
+        <!-- Section À propos -->
+        <section id="about" class="bg-vert-foret text-beige-creme py-16 md:py-24">
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="section-title text-white">À propos d'Olamar Service</h2>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Fondée avec une vision claire d'excellence agricole, Olamar Service a été créée par des passionnés de l'agrobusiness. Notre histoire est celle d'un engagement profond envers le développement rural durable et la prospérité de nos clients.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4 text-orange-agricole">Notre Fondateur</h3>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Le parcours de notre fondateur est jalonné de succès et d'expériences riches dans le secteur agricole et foncier. Ayant identifié les défis et les opportunités spécifiques de la région, il a créé Olamar Service pour offrir des solutions innovantes et adaptées. Son expertise et sa détermination sont les piliers de notre entreprise.
+                    </p>
+                    <h3 class="text-2xl font-semibold mb-4 text-orange-agricole">Missions et Valeurs</h3>
+                    <ul class="list-disc list-inside text-lg space-y-2">
+                        <li><span class="font-bold">Mission :</span> Accompagner les acteurs agricoles dans la réalisation de leurs projets, de l'acquisition foncière à la commercialisation, en passant par l'optimisation des rendements.</li>
+                        <li><span class="font-bold">Valeurs :</span> Intégrité, Innovation, Durabilité, Engagement client, Expertise.</li>
+                    </ul>
+                </div>
+                <!-- Photo de l'équipe (facultatif) - Placeholder, replace if available -->
+                <div class="fade-in">
+                    <img src="https://placehold.co/600x400/8BC34A/104E2B?text=EQUIPE+OLAMAR" alt="Équipe Olamar Service" class="rounded-xl shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-vert-foret text-beige-creme py-12 px-6 md:px-12 rounded-t-lg">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start">
+                <!-- Logo Olamar Service - Placeholder -->
+                <img src="https://placehold.co/60x60/104E2B/FFFFFF?text=LOGO" alt="Logo Olamar Service" class="h-12 mb-4 rounded-full">
+                <p class="text-lg font-bold">Olamar Service</p>
+                <p class="text-sm mt-2">Votre partenaire pour un avenir agricole prospère.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Contact Rapide</h3>
+                <p>📍 Pobè – Cotonou</p>
+                <p>📞 +229 01 62 22 27 52</p>
+                <p>📞 +229 01 68 95 59 99</p>
+                <p>📧 gnahorubencandide@gmail.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-orange-agricole mb-4">Suivez-nous</h3>
+                <a href="https://www.facebook.com/OlamarService" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-white transition duration-300">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <p class="text-sm mt-4">Pour les dernières actualités et conseils.</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+            &copy; <span id="currentYear"></span> Olamar Service. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/2290162222752" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // JavaScript pour la navigation, les formulaires et les animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+           
+            // Toggle du menu mobile
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling pour la navigation (pour les ancres sur la même page)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animations au scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('appear');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Mettre à jour l'année dans le footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

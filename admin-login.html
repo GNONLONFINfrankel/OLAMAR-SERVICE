@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olamar Service - Connexion Admin</title>
+    <!-- Favicon - Placeholder, replace with actual Olamar Service logo -->
+    <link rel="icon" href="ressources\WhatsApp Image 2025-06-26 à 23.35.49_bdc234a0.jpg" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Tailwind CSS colors */
+        :root {
+            --color-vert-foret: #104E2B;
+            --color-orange-agricole: #D97904;
+            --color-beige-creme: #F5F3ED;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-beige-creme); /* Cream background */
+            color: var(--color-vert-foret); /* Forest green text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .bg-vert-foret { background-color: var(--color-vert-foret); }
+        .text-vert-foret { color: var(--color-vert-foret); }
+        .bg-orange-agricole { background-color: var(--color-orange-agricole); }
+        .text-orange-agricole { color: var(--color-orange-agricole); }
+    </style>
+</head>
+<body class="bg-beige-creme">
+    <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md text-center">
+        <h2 class="text-3xl font-bold text-vert-foret mb-6">Connexion Administrateur</h2>
+        <p class="text-sm text-gray-600 mb-8">
+            Ceci est un mockup frontend. Pour une sécurité réelle et la gestion des données, un backend est nécessaire.
+            <br>Utilisez "admin" comme nom d'utilisateur et "password" comme mot de passe pour la démo.
+        </p>
+        <form id="loginForm">
+            <div class="mb-4">
+                <label for="username" class="sr-only">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-agricole" required>
+            </div>
+            <div class="mb-6">
+                <label for="password" class="sr-only">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-agricole" required>
+            </div>
+            <button type="submit" class="bg-orange-agricole text-white font-semibold py-3 px-6 rounded-lg w-full shadow-md hover:bg-orange-600 transition duration-300">
+                Se connecter
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // This is a simulation for frontend demonstration only.
+            // In a real application, credentials would be sent to a backend for verification.
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Hardcoded credentials for demonstration purposes (NOT SECURE for production)
+            if (username === 'admin' && password === 'password') { 
+                alert('Connexion réussie ! Redirection vers le tableau de bord...');
+                window.location.href = 'admin-dashboard.html'; // Redirect to the dashboard page
+            } else {
+                alert('Nom d\'utilisateur ou mot de passe incorrect.');
+            }
+        });
+    </script>
+</body>
+</html>
